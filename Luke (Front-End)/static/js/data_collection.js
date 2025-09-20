@@ -43,6 +43,28 @@ function setup(){
         })
     })
 
+    document.getElementById('add_needed_skill_button').addEventListener('click', function(){
+        const listDiv=document.getElementById('myNeededSkillList');
+        newListItem=document.createElement('ul');
+        skillText=document.getElementById('needed_skills_bar').value;
+        document.getElementById('needed_skills_bar').value=""
+        newListItem.innerHTML=skillText;
+        newListItem.id=listDiv.childElementCount+1
+
+        deleteButton=document.createElement('button')
+        deleteButton.id="added_needed_skill"+newListItem.id
+        deleteButton.className="delete"
+        deleteButton.innerHTML="Delete"
+        newListItem.appendChild(deleteButton)
+        listDiv.appendChild(newListItem)
+        deleteButton.addEventListener('click', function(event){
+            deleteID=event.target.id
+            console.log(deleteID)
+            ulToDelete=document.getElementById(deleteID).parentNode;
+            listDiv.removeChild(ulToDelete)
+        })
+    })
+
     
 
     
@@ -170,14 +192,15 @@ function setup(){
 
         let arrAsString=calendarToSerial();
         let mySkills=pageSkillsToSkillsString();
-        //let neededSkills=pageNeededSkillsToNeededSkillsString();
+        let myNeededSkills=pageNeededSkillsToNeededSkillsString();
+        console.log(myNeededSkills)
 
         fetch('/process_value', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ schedule: arrAsString, mySkills: mySkills}) // Send as JSON
+            body: JSON.stringify({ schedule: arrAsString, mySkills: mySkills, myNeededSkills: myNeededSkills}) // Send as JSON
         })
         .then(response => response.json())
         .then(data => {
@@ -232,6 +255,18 @@ function pageSkillsToSkillsString(){
    }
    return skillsString;
 
+}
+
+function pageNeededSkillsToNeededSkillsString(){
+    const pageNeededSkillsDiv=document.getElementById("myNeededSkillList")
+    neededSkillsString=""
+   for(const child of pageNeededSkillsDiv.children){
+        //console.log(child.tagName)
+        console.log(child.innerHTML.split("<")[0]);
+        if(skillsString.length!=0) neededSkillsString=neededSkillsString+",";
+        neededSkillsString=neededSkillsString+child.innerHTML.split("<")[0]
+   }
+   return neededSkillsString;
 }
 function calendarToSerial(){
     const serializedArr=[]

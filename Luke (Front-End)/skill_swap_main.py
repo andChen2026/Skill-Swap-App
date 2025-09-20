@@ -179,21 +179,26 @@ def process_value():
             data = request.get_json()  # Get JSON data from the request
             schedule = data.get('schedule')
             mySkills=data.get('mySkills')
+            myNeededSkills=data.get('myNeededSkills')
     
             # Perform some processing with the received_value
 
-            processed_message = f"Received values: {schedule} and {mySkills} recieved at the backend!"
+            processed_message = f"Received values: {schedule} and {mySkills} and {myNeededSkills} recieved at the backend!"
         
             check=session["Username"]
             print("check= "+check)
             currUser=web_session.query(User).filter_by(Username=check).first()
-            if currUser is None:
-                currUser.Schedule="3"
-            else:
-                currUser.Schedule=schedule
-                #currUser.MySkills=mySkills
+            #if currUser is None:
+                #currUser.Schedule="3"
+            #else:
+            currUser.Schedule=schedule
+            web_session.commit()
+            currUser.MySkills=mySkills
+            web_session.commit()
+            currUser.NeededSkills=myNeededSkills
             web_session.commit()
         return jsonify(message=processed_message)    
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    #app.run(debug=True)
+    app.run(debug=False)
