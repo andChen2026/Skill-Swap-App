@@ -192,7 +192,7 @@ def process_value():
                 #currUser.Schedule="3"
             #else:
             currUser.Schedule=schedule
-            web_session.commit()
+            #web_session.commit()
             currUser.MySkills=mySkills
             web_session.commit()
             currUser.NeededSkills=myNeededSkills

@@ -263,7 +263,7 @@ function pageNeededSkillsToNeededSkillsString(){
    for(const child of pageNeededSkillsDiv.children){
         //console.log(child.tagName)
         console.log(child.innerHTML.split("<")[0]);
-        if(skillsString.length!=0) neededSkillsString=neededSkillsString+",";
+        if(neededSkillsString.length!=0) neededSkillsString=neededSkillsString+",";
         neededSkillsString=neededSkillsString+child.innerHTML.split("<")[0]
    }
    return neededSkillsString;
