@@ -36,10 +36,12 @@
     <div id="myNeededSkillList"></div>
     <button id="submit_profile_data" data-value="myButtonValue">Get Matches</button>
     <div>
-    <datalist id="suggestions">
-        <option>First option</option>
-        <option>Second Option</option>
-    </datalist>
-    <input type="text" autoComplete="on" list="suggestions"/> 
-</div>
+    <form action="" method="get">
+        <input list="suggestions" id="suggestions" name="suggestions" >
+        <datalist id="suggestions">
+            <option>First option</option>
+            <option>Second Option</option>
+        </datalist>
+    </form>
+    
 </body>

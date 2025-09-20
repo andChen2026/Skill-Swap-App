@@ -21,8 +21,8 @@ function setup(){
             console.error('Error:', error);
         });
     })*/
-   document.getElementById("suggestions").addEventListener('change', function(){
-        console.log(this.value)
+   document.getElementById("suggestions").addEventListener('change', function(event){
+        console.log(document.getElementById("suggestions").value)
    })
     document.getElementById('add_skill_button').addEventListener('click', function(){
         const listDiv=document.getElementById('mySkillList');
