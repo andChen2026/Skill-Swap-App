@@ -12,8 +12,8 @@
 
 This is the spirit of SkillSwap—a platform where users trade tutoring in their areas of strength for learning in the areas they want to grow. 
 
-Whether it’s singing for math, design for public speaking, or coding for cooking, SkillSwap creates a living ecosystem where people exchange knowledge directly, empower each other, and grow together.
+Whether it’s singing for math, design for public speaking, or coding for cooking, SkillSwap creates a living ecosystem where people :sparkles: **exchange knowledge directly, empower each other, and grow together.** :sparkles:
 
-In a world where access to education are expensive, SkillSwap unlocks opportunities for anyone. It is a marketplace of learning where value flows both ways.
+**It Matters:** In a world where access to education are expensive, SkillSwap unlocks opportunities for anyone. It is a marketplace of learning where value flows both ways.
 
 This isn’t just tutoring. This is education reimagined—social, affordable, and personal. 
