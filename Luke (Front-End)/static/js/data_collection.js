@@ -24,7 +24,7 @@ function setup(){
     document.getElementById('add_skill_button').addEventListener('click', function(){
         const listDiv=document.getElementById('mySkillList');
         newListItem=document.createElement('ul');
-        skillText=document.getElementById('skills_bar').value+" ";
+        skillText=document.getElementById('skills_bar').value;
         document.getElementById('skills_bar').value=""
         newListItem.innerHTML=skillText;
         newListItem.id=listDiv.childElementCount+1
@@ -46,7 +46,7 @@ function setup(){
     document.getElementById('add_needed_skill_button').addEventListener('click', function(){
         const listDiv=document.getElementById('myNeededSkillList');
         newListItem=document.createElement('ul');
-        skillText=document.getElementById('needed_skills_bar').value+" ";
+        skillText=document.getElementById('needed_skills_bar').value;
         document.getElementById('needed_skills_bar').value=""
         newListItem.innerHTML=skillText;
         newListItem.id=listDiv.childElementCount+1
@@ -243,7 +243,10 @@ function serialToCalendar(serial){
 function pageSkillsToSkillsString(){
     const pageSkillsDiv=document.getElementById("mySkillList")
     console.log(pageSkillsDiv.childElementCount)
-   // for const
+   for(const child of pageSkillsDiv.childNodes){
+        console.log(child)
+        console.log(child.innerText)
+   }
 
 }
 function calendarToSerial(){
