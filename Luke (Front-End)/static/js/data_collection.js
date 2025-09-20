@@ -151,8 +151,8 @@ function setup(){
             serialToCalendar(data.Schedule)
             console.log("myskills="+data.MySkills)
             mySkillsStringToPageSkills(data.MySkills)
-            //mySkillsStringToPageSkills(data.MySkills)
-            //myNeededSkillsStringtoPageNeededSkills(data.NeededSkills)
+            myNeededSkillsStringtoPageNeededSkills(data.MyNeededSkills)
+            console.log("myneededskills="+data.MyNeededSkills)
         })
             .catch(error => {
               console.error('Error fetching data:', error);
@@ -269,14 +269,14 @@ function mySkillsStringToPageSkills(mySkillsString){
             skillText=mySkillsArr[i];
             //document.getElementById('needed_skills_bar').value=""
             newListItem.innerHTML=skillText;
-            newListItem.id=listDiv.childElementCount+1
+            newListItem.id=pageSkillsDiv.childElementCount+1
 
             deleteButton=document.createElement('button')
             deleteButton.id="added_needed_skill"+newListItem.id
             deleteButton.className="delete"
             deleteButton.innerHTML="Delete"
             newListItem.appendChild(deleteButton)
-            listDiv.appendChild(newListItem)
+            pageSkillsDiv.appendChild(newListItem)
             deleteButton.addEventListener('click', function(event){
                 deleteID=event.target.id
                 console.log(deleteID)
@@ -298,6 +298,35 @@ function pageNeededSkillsToNeededSkillsString(){
         neededSkillsString=neededSkillsString+child.innerHTML.split("<")[0]
    }
    return neededSkillsString;
+}
+
+function myNeededSkillsStringtoPageNeededSkills(neededSkillsString){
+    console.log("executing!!!")
+    if(neededSkillsString!=null){
+        console.log("not null")
+        neededSkillsArr=neededSkillsString.split(",")
+        const pageNeededSkillsDiv=document.getElementById("myNeededSkillList")
+        for(i=0; i<mySkillsArr.length; i++){
+            newListItem=document.createElement('ul');
+            skillText=neededSkillsArr[i];
+            //document.getElementById('needed_skills_bar').value=""
+            newListItem.innerHTML=skillText;
+            newListItem.id=pageNeededSkillsDiv.childElementCount+1
+
+            deleteButton=document.createElement('button')
+            deleteButton.id="added_needed_skill"+newListItem.id
+            deleteButton.className="delete"
+            deleteButton.innerHTML="Delete"
+            newListItem.appendChild(deleteButton)
+            pageNeededSkillsDiv.appendChild(newListItem)
+            deleteButton.addEventListener('click', function(event){
+                deleteID=event.target.id
+                console.log(deleteID)
+                ulToDelete=document.getElementById(deleteID).parentNode;
+                listDiv.removeChild(ulToDelete)
+            })
+        }
+    }
 }
 function calendarToSerial(){
     const serializedArr=[]

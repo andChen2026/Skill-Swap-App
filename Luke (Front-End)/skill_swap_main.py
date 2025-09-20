@@ -173,7 +173,7 @@ def process_value():
         
         currUser=web_session.query(User).filter_by(Username=session["Username"]).first()
         if request.method=='GET':
-            saved_schedule={'Schedule': currUser.Schedule, 'MySkills': currUser.MySkills}
+            saved_schedule={'Schedule': currUser.Schedule, 'MySkills': currUser.MySkills, 'MyNeededSkills': currUser.NeededSkills}
             return jsonify(saved_schedule)
         else:
             data = request.get_json()  # Get JSON data from the request
