@@ -149,6 +149,10 @@ function setup(){
             .then(data => {
             console.log(data); // Do something with the data
             serialToCalendar(data.Schedule)
+            console.log("myskills="+data.MySkills)
+            mySkillsStringToPageSkills(data.MySkills)
+            //mySkillsStringToPageSkills(data.MySkills)
+            //myNeededSkillsStringtoPageNeededSkills(data.NeededSkills)
         })
             .catch(error => {
               console.error('Error fetching data:', error);
@@ -255,6 +259,33 @@ function pageSkillsToSkillsString(){
    }
    return skillsString;
 
+}
+function mySkillsStringToPageSkills(mySkillsString){
+    if(mySkillsString!=null){
+        mySkillsArr=mySkillsString.split(",")
+        const pageSkillsDiv=document.getElementById("mySkillList")
+        for(i=0; i<mySkillsArr.length; i++){
+            newListItem=document.createElement('ul');
+            skillText=mySkillsArr[i];
+            //document.getElementById('needed_skills_bar').value=""
+            newListItem.innerHTML=skillText;
+            newListItem.id=listDiv.childElementCount+1
+
+            deleteButton=document.createElement('button')
+            deleteButton.id="added_needed_skill"+newListItem.id
+            deleteButton.className="delete"
+            deleteButton.innerHTML="Delete"
+            newListItem.appendChild(deleteButton)
+            listDiv.appendChild(newListItem)
+            deleteButton.addEventListener('click', function(event){
+                deleteID=event.target.id
+                console.log(deleteID)
+                ulToDelete=document.getElementById(deleteID).parentNode;
+                listDiv.removeChild(ulToDelete)
+            })
+        }
+    }
+    
 }
 
 function pageNeededSkillsToNeededSkillsString(){
