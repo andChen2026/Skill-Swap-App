@@ -170,17 +170,19 @@ def get_serial():
     return jsonify(currSerial)
 @app.route('/process_value', methods=['GET','POST'])
 def process_value():
+        
         currUser=web_session.query(User).filter_by(Username=session["Username"]).first()
         if request.method=='GET':
             saved_schedule={'Schedule': currUser.Schedule}
             return jsonify(saved_schedule)
         else:
             data = request.get_json()  # Get JSON data from the request
-            received_value = data.get('value')
+            schedule = data.get('schedule')
+            mySkills=data.get('mySkills')
     
             # Perform some processing with the received_value
 
-            processed_message = f"Received value: {received_value} at the backend!"
+            processed_message = f"Received values: {schedule} and {mySkills} recieved at the backend!"
         
             check=session["Username"]
             print("check= "+check)
@@ -188,7 +190,8 @@ def process_value():
             if currUser is None:
                 currUser.Schedule="3"
             else:
-                currUser.Schedule=received_value
+                currUser.Schedule=schedule
+                #currUser.MySkills=mySkills
             web_session.commit()
         return jsonify(message=processed_message)    
 

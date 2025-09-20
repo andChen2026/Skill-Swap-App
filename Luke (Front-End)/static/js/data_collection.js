@@ -43,27 +43,7 @@ function setup(){
         })
     })
 
-    document.getElementById('add_needed_skill_button').addEventListener('click', function(){
-        const listDiv=document.getElementById('myNeededSkillList');
-        newListItem=document.createElement('ul');
-        skillText=document.getElementById('needed_skills_bar').value;
-        document.getElementById('needed_skills_bar').value=""
-        newListItem.innerHTML=skillText;
-        newListItem.id=listDiv.childElementCount+1
-
-        deleteButton=document.createElement('button')
-        deleteButton.id="needed_skill"+newListItem.id
-        deleteButton.className="delete"
-        deleteButton.innerHTML="Delete"
-        newListItem.appendChild(deleteButton)
-        listDiv.appendChild(newListItem)
-        deleteButton.addEventListener('click', function(event){
-            deleteID=event.target.id
-            console.log(deleteID)
-            ulToDelete=document.getElementById(deleteID).parentNode;
-            listDiv.removeChild(ulToDelete)
-        })
-    })
+    
 
     
     //get and display user's location
@@ -197,7 +177,7 @@ function setup(){
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ value: arrAsString }) // Send as JSON
+            body: JSON.stringify({ schedule: arrAsString, mySkills: mySkills}) // Send as JSON
         })
         .then(response => response.json())
         .then(data => {
@@ -243,10 +223,14 @@ function serialToCalendar(serial){
 function pageSkillsToSkillsString(){
     const pageSkillsDiv=document.getElementById("mySkillList")
     console.log(pageSkillsDiv.childElementCount)
-   for(const child of pageSkillsDiv.childNodes){
-        console.log(child)
-        console.log(child.innerText)
+    skillsString=""
+   for(const child of pageSkillsDiv.children){
+        //console.log(child.tagName)
+        console.log(child.innerHTML.split("<")[0]);
+        if(skillsString.length!=0) skillsString=skillsString+",";
+        skillsString=skillsString+child.innerHTML.split("<")[0]
    }
+   return skillsString;
 
 }
 function calendarToSerial(){
