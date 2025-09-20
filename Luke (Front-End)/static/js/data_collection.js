@@ -272,7 +272,7 @@ function mySkillsStringToPageSkills(mySkillsString){
             newListItem.id=pageSkillsDiv.childElementCount+1
 
             deleteButton=document.createElement('button')
-            deleteButton.id="added_needed_skill"+newListItem.id
+            deleteButton.id="added_skill"+newListItem.id
             deleteButton.className="delete"
             deleteButton.innerHTML="Delete"
             newListItem.appendChild(deleteButton)
@@ -281,7 +281,7 @@ function mySkillsStringToPageSkills(mySkillsString){
                 deleteID=event.target.id
                 console.log(deleteID)
                 ulToDelete=document.getElementById(deleteID).parentNode;
-                listDiv.removeChild(ulToDelete)
+                pageSkillsDiv.removeChild(ulToDelete)
             })
         }
     }
@@ -306,7 +306,7 @@ function myNeededSkillsStringtoPageNeededSkills(neededSkillsString){
         console.log("not null")
         neededSkillsArr=neededSkillsString.split(",")
         const pageNeededSkillsDiv=document.getElementById("myNeededSkillList")
-        for(i=0; i<mySkillsArr.length; i++){
+        for(i=0; i<neededSkillsArr.length; i++){
             newListItem=document.createElement('ul');
             skillText=neededSkillsArr[i];
             //document.getElementById('needed_skills_bar').value=""
@@ -321,9 +321,10 @@ function myNeededSkillsStringtoPageNeededSkills(neededSkillsString){
             pageNeededSkillsDiv.appendChild(newListItem)
             deleteButton.addEventListener('click', function(event){
                 deleteID=event.target.id
+                console.log("parent="+document.getElementById(deleteID).parentNode)
                 console.log(deleteID)
                 ulToDelete=document.getElementById(deleteID).parentNode;
-                listDiv.removeChild(ulToDelete)
+                pageNeededSkillsDiv.removeChild(ulToDelete)
             })
         }
     }
