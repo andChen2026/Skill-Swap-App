@@ -18,7 +18,7 @@ Whether it’s singing for math, design for public speaking, or coding for cooki
 
 **SkillSwap is built so everyone can join in, including people with disabilities or different learning needs.**
 
-Fair Matching: The app helps connect users from similar backgrounds so everyone can both teach and learn.
+**Fair Matching:** The app helps connect users from similar backgrounds so everyone can both teach and learn.
 
 SkillSwap makes it easy for anyone to share skills and learn—no matter their ability, background, or learning style
 
