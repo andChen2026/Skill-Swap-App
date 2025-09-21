@@ -14,7 +14,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 
 # Install Python3 Dependencies required for projects
 RUN pip install --upgrade pip
-RUN pip install torch matplotlib flask pandas
+RUN pip install torch matplotlib flask pandas sqlalchemy sqlalchemy.orm kagglehub
 
 # Verify dependencies have all been correctly installed, printed out during container initialization
 RUN pip list
