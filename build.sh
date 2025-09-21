@@ -1,3 +1,5 @@
+# Shell script to build the image from the docker file
+
 # Set the Image name
 IMAGE_NAME="itsandrewc/app"
 

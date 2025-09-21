@@ -1,3 +1,5 @@
+# Shell Script to run the image as a Container instance
+
 # Set the Image name
 IMAGE_NAME="itsandrewc/app"
 
