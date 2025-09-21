@@ -103,6 +103,7 @@ def profile(username):
         return render_template("profile.html",username=username)
     elif request.method=="POST": 
         if request.form.get('action') == 'Get Matches':
+            print('boom')
             return redirect(url_for("show_matches"))
         data = request.get_json()  # Get JSON data from the request
         received_value = data.get('value')
