@@ -1,26 +1,29 @@
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>Login</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/login.css')}}">
-    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-    <body>
-        <h1>Expand Your Skills!</h1>
-            <div style="background-color: #d2d6db">
-                <form action="" method="post">
-                    <p>{{error_message}}</p>
-                    <label for="user">Username:</label>
-                    <input type="text" name="user" />
-                    <br/>
-                    <label for="pass">Password:</label>
-                    <input type="text" name="pass" />
-                    <br/>
-                    <!--<div>
-                        <input type="submit" name="login" value="Login" />
-                    </div>-->
-                    <input type="submit" name="login" value="Login" />
-                    <button type="submit" name="action" value="New Account">Create Account</button>
-                </form>
-            </div>
-    </body>
+<body>
+    <div class="container">
+        <h1>✨SkillSwap!✨</h1>
+        <h2>Expand Your Skills :D</h2>
+        <div class="form-card">
+            <form action="" method="post">
+                <p class="error">{{error_message}}</p>
+                
+                <label for="user">Username</label>
+                <input type="text" name="user" placeholder="Enter username" />
+
+                <label for="pass">Password</label>
+                <input type="password" name="pass" placeholder="Enter password" />
+
+                <input type="submit" name="login" value="Login" class="btn-primary" />
+                <button type="submit" name="action" value="New Account" class="btn-secondary">
+                    Create Account
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
 </html>

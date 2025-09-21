@@ -1,72 +1,112 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>Profile</title>
     <script type="text/javascript" src="{{url_for('static', filename='js/data_collection.js')}}"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/scheduler.css') }}">
-    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" crossorigin="anonymous"></script>
     <script src="jquery.autocompleteDropdown-min.js"></script>
     <script type="text/javascript" src="{{url_for('static', filename='js/scheduler.js')}}"></script>
     <link href="autocompleteDropdown.css" rel="stylesheet">
 </head>
 
 <body>
-    <div>
-        <h1>Customize your profile</h1>
-    </div>
-    
-    <ul style="text-align: center" id="username">Hello {{username}} !</ul>
-    <!--Gemini-->
-    <!--<form action="/upload-profile-picture" method="post" enctype="multipart/form-data">
-        <label for="profile_pic">Upload a profile picture:</label>
-        <input type="file" id="profile_pic" name="profile_pic" accept=".jpg, .jpeg, .png">
-        <button type="submit">Upload</button>
-    </form>
-    
-    End Gemini-->
-    <!--Gemini-->
-    
+    <div class="container">
+        <h1>Customize Your Profile</h1>
+        <p class="welcome">Hello, <strong>{{username}}</strong> 👋</p>
 
-    <!--<ul id="location">Blank</ul>-->
-    <div style="background-color: #ffffff">
-        <table id="example"></table>
+        <div class="profile-card">
+            <!-- Skills -->
+            <div class="form-section">
+                <label for="skills_bar">Skills</label>
+                <input type="text" id="skills_bar" name="skills_bar" placeholder="Add your skills here!">
+                <button type="button" id="add_skill_button" class="btn-primary">Add</button>
+                <div id="mySkillList" class="tag-list"></div>
+            </div>
+
+            <div class="form-section">
+                <label for="needed_skills_bar">Needed Skills</label>
+                <input type="text" id="needed_skills_bar" name="needed_skills_bar" placeholder="Skills you need help with">
+                <button type="button" id="add_needed_skill_button" class="btn-primary">Add</button>
+                <div id="myNeededSkillList" class="tag-list"></div>
+            </div>
+
+            <button id="submit_profile_data" class="btn-accent">Get Matches</button>
+        </div>
+
+        <!-- Scheduler -->
+        <div class="profile-card">
+            <h2>Availability</h2>
+            <table id="example" class="scheduler"></table>
+        </div>
+
+        <!-- Extra inputs -->
+        <div class="profile-card">
+            <h2>Location</h2>
+            <form action="" method="get">
+                <input list="suggestions" id="suggestions" name="suggestions" placeholder="Search...">
+                <datalist id="suggestions">
+                    <option>First option</option>
+                    <option>Second Option</option>
+                </datalist>
+            </form>
+
+            <select multiple>
+                <option value="AF">Afghanistan</option>
+                <option value="AX">Åland Islands</option>
+                <option value="AL">Albania</option>
+                <option value="DZ">Algeria</option>
+                <option value="AS">American Samoa</option>
+                <option value="AD">Andorra</option>
+                <option value="AO">Angola</option>
+                <option value="AI">Anguilla</option>
+                <option value="AQ">Antarctica</option>
+                <option value="AG">Antigua and Barbuda</option>
+            </select>
+        </div>
     </div>
-    
-    <div id="result"></div>
-    <div>
-        <label for="Skills">Skills:</label>
-        <input type="text" id="skills_bar" name="skills_bar" placeholder="Add your skills here!">
-        <button type="button" id="add_skill_button">Add</button>
-        <div id="mySkillList"></div>
-        <label for="Needed Skills">Needed Skills:</label>
-        <input type="text" id="needed_skills_bar" name="needed_skills_bar" placeholder="Skills you need help with">
-        <button type="button" id="add_needed_skill_button">Add</button>
-        <div id="myNeededSkillList"></div>
-            <button id="submit_profile_data" data-value="myButtonValue">Get Matches</button>
-        <div>
-        <form action="" method="get">
-            <input list="suggestions" id="suggestions" name="suggestions" >
-            <datalist id="suggestions">
-                <option>First option</option>
-                <option>Second Option</option>
-            </datalist>
-        </form>
-        <select multiple>
-            <option value="AF">Afghanistan</option>
-            <option value="AX">Åland Islands</option>
-            <option value="AL">Albania</option>
-            <option value="DZ">Algeria</option>
-            <option value="AS">American Samoa</option>
-            <option value="AD">Andorra</option>
-            <option value="AO">Angola</option>
-            <option value="AI">Anguilla</option>
-            <option value="AQ">Antarctica</option>
-            <option value="AG">Antigua and Barbuda</option>
-        </select>
-    </div>
-    
-    
+
+<!-- Scheduler JS & CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/scheduler.css') }}">
+<script src="{{ url_for('static', filename='js/scheduler.js') }}"></script>
+
+<!-- Your custom profile logic (skills as tags, etc.) -->
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+
+<script>
+  // Override FOOT_ROW to use a real button
+$.fn.scheduler.templates.FOOT_ROW =
+  '<tr><td colspan="%s">' +
+    '<div class="scheduler-footer-cell">' +
+      '<span class="scheduler-tips">%s</span>' +
+      '<button type="button" class="scheduler-reset">%s</button>' +
+    '</div>' +
+  '</td></tr>';
+
+
+$(document).ready(function() {
+    $('#example').scheduler({
+        locale: 'en',
+        accuracy: 1,
+        multiple: true,
+        footer: true,
+        RESET: 'Reset Selected',
+        onSelect: function(selected) {
+            console.log("Current selection:", selected);
+        }
+    });
+
+    // Make reset button functional
+    $('#example').on('click', '.scheduler-reset', function() {
+        $('#example').scheduler('val', {}); // clears selection
+    });
+});
+
+</script>
+
+
+
 </body>
+</html>
