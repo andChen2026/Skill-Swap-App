@@ -1,4 +1,6 @@
-# SteelHack XII 
+# SteelHack XII - Fully Working!!
+
+A short DEMO: https://youtu.be/YcjZoQxk64g :eyes:
 
 **Team: White Hats United**
 - Andrew Chen (ayc23@pitt.edu)
@@ -14,17 +16,17 @@ SkillSwap is an inclusive, data-driven, peer-to-peer learning platform—connect
 
 Whether it’s singing for math, design for public speaking, or coding for cooking, SkillSwap creates a living ecosystem where :sparkles:**people exchange knowledge directly, empower each other, and grow together.**:sparkles:
 
-# Track Focus: Inclusive Design & Technology 
+**It Matters:** In a world where access to education are expensive, SkillSwap unlocks opportunities for anyone. It is a marketplace of learning where value flows both ways.
+
+This isn’t just tutoring. This is education reimagined—social, affordable, and personal.
+
+## Track Focus: Civics and Accessibility
 
 **SkillSwap is built so everyone can join in, including people with disabilities or different learning needs.**
 
 **Fair Matching:** The app helps connect users from similar backgrounds so everyone can both teach and learn.
 
-SkillSwap makes it easy for anyone to share skills and learn—no matter their ability, background, or learning style
-
-**It Matters:** In a world where access to education are expensive, SkillSwap unlocks opportunities for anyone. It is a marketplace of learning where value flows both ways.
-
-This isn’t just tutoring. This is education reimagined—social, affordable, and personal. 
+SkillSwap makes it easy for anyone to share skills and learn—no matter their ability, background, or learning style.
 
 ## How It Works: Big Picture
 
