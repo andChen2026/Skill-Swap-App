@@ -42,36 +42,46 @@
     <div id="result"></div>
     <div>
         <label for="Skills">Skills:</label>
-        <input type="text" id="skills_bar" name="skills_bar" placeholder="Add your skills here!">
+        <!--<input type="text" id="skills_bar" name="skills_bar" placeholder="Add your skills here!">-->
+         <!--<form action="" method="get">-->
+        <input list="skills" id="skills_bar" name="skills_bar" placeholder="Add your skills here!" autocomplete="off">
+        <datalist id="skills" class="skills_dropdown">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+             <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>
         <button type="button" id="add_skill_button">Add</button>
         <div id="mySkillList"></div>
-        <label for="Needed Skills">Needed Skills:</label>
-        <input type="text" id="needed_skills_bar" name="needed_skills_bar" placeholder="Skills you need help with">
+        
+        <!--<button id="skills_submit" onclick="getSelectedDatalistValue()">Get Value</button>
+
+        <script>
+            function getSelectedDatalistValue() {
+            const inputValue = document.getElementById('skills_bar').value;
+            console.log("Selected/Entered Value:", inputValue);
+            alert("Selected/Entered Value: " + inputValue);
+        }-->
+
+    <!--</form>-->
+        
+        <!--<label for="Needed Skills">Needed Skills:</label>
+        <input type="text" id="needed_skills_bar" name="needed_skills_bar" placeholder="Skills you need help with">-->
+        <input list="needed_skills" id="needed_skills_bar" name="needed_skills_bar" placeholder="Add your skills here!" autocomplete="off">
+        <datalist id="needed_skills" class="needed_skills_dropdown">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>
         <button type="button" id="add_needed_skill_button">Add</button>
         <div id="myNeededSkillList"></div>
             <button id="submit_profile_data" data-value="myButtonValue">Get Matches</button>
         <div>
-        <form action="" method="get">
-            <input list="suggestions" id="suggestions" name="suggestions" >
-            <datalist id="suggestions">
-                <option>First option</option>
-                <option>Second Option</option>
-            </datalist>
-        </form>
-        
+       
     </div>
     
-    <select multiple>
-            <option value="AF">Afghanistan</option>
-            <option value="AX">Åland Islands</option>
-            <option value="AL">Albania</option>
-            <option value="DZ">Algeria</option>
-            <option value="AS">American Samoa</option>
-            <option value="AD">Andorra</option>
-            <option value="AO">Angola</option>
-            <option value="AI">Anguilla</option>
-            <option value="AQ">Antarctica</option>
-            <option value="AG">Antigua and Barbuda</option>
-    </select>
     
 </body>

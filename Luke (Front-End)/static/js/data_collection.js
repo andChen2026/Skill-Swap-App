@@ -21,10 +21,18 @@ function setup(){
             console.error('Error:', error);
         });
     })*/
-    $(document).ready (dropdown());
-
+    //$(document).ready (dropdown());
+    
+    document.addEventListener('DOMContentLoaded',function(){
+        elements=document.getElementsByClassName('needed_skills_dropdown')
+        console.log("elements"+elements)
+    })
+    
+    
+    
     //jquery dropdown test
     function dropdown(){
+        console.log("executing dropdown method")
         $('select').autocompleteDropdown({
 
         // placeholder for the search field
@@ -73,9 +81,7 @@ function setup(){
         },
   
     })*/
-   document.getElementById("suggestions").addEventListener('change', function(event){
-        console.log(document.getElementById("suggestions").value)
-   })
+   
     document.getElementById('add_skill_button').addEventListener('click', function(){
         const listDiv=document.getElementById('mySkillList');
         newListItem=document.createElement('ul');
