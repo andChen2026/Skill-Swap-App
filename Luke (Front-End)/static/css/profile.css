@@ -1,58 +1,152 @@
-.search-results-dropdown {
-  max-height: 200px; /* Set a maximum height for the dropdown */
-  overflow-y: auto; /* Add a vertical scrollbar if content exceeds max-height */
-  border: 1px solid #ccc;
-  background-color: white;
-  /* Other styling for the dropdown */
+/* General */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #6EE7B7, #3B82F6);
+    margin: 0;
+    padding: 20px;
 }
 
-body{
-    font-family: 'Open Sans', sans-serif;
-    background-color: #7DF9FF
-}
-
-h1{
-    text-align: center;
-    font-size: 50px;
-}
-
-/*Copied from login.css*/
-div{
-    width: 50%;
-    margin-left: auto;
-    margin-right: auto;
-    text-align:center;
-    
-}
-
-form{
+/* Container */
+.container {
+    max-width: 900px;
     margin: auto;
-    width: 50%
+    text-align: center;
 }
 
-input[type="text"]{
-    font-family: 'Open Sans', sans-serif;
-    /*display:block;*/
-    margin: 10px;
-    width: 200px;
+/* Heading */
+h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: white;
+    margin-bottom: 10px;
 }
 
-input[type="submit"]{
-    font-family: 'Open Sans', sans-serif;
-    /*display:block;*/
-    font-size: 20px;
-    margin: 100px;
-    width: 200px;
+.welcome {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
 }
 
-label{
-    font-family: 'Open Sans', sans-serif;
-    font-size: 30px;
-    text-align:center;
-    display:block;
+/* Card Style */
+.profile-card {
+    background: white;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0px 6px 20px rgba(0,0,0,0.1);
+    margin-bottom: 25px;
+    text-align: left;
 }
-button{
-    font-size: 20px;
-    font-family: 'Open Sans', sans-serif;
-    width: auto;
+
+/* Section Titles */
+.profile-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    color: #111827;
+}
+
+/* Labels */
+label {
+    font-size: 1rem;
+    font-weight: 500;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+/* Inputs */
+input[type="text"],
+input[list],
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    outline: none;
+    transition: border 0.3s ease;
+}
+
+input:focus,
+select:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 5px rgba(59,130,246,0.4);
+}
+
+/* Buttons */
+.btn-primary,
+.btn-accent {
+    display: inline-block;
+    margin: 8px 5px 0;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+/* Blue button */
+.btn-primary {
+    background-color: #3B82F6;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #2563EB;
+    transform: scale(1.05);
+}
+
+/* Accent button */
+.btn-accent {
+    background-color: #10B981;
+    color: white;
+    margin-top: 20px;
+    display: block;
+    width: 100%;
+}
+
+.btn-accent:hover {
+    background-color: #059669;
+    transform: scale(1.03);
+}
+
+/* Tags / Skill list */
+.tag-list {
+    margin-top: 10px;
+}
+
+.tag-list span {
+    display: inline-block;
+    background: #E5E7EB;
+    color: #111827;
+    padding: 6px 12px;
+    border-radius: 20px;
+    margin: 5px;
+    font-size: 0.9rem;
+}
+
+/* Scheduler cleanup */
+.scheduler {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.scheduler th,
+.scheduler td {
+    border: 1px solid #d1d5db;
+    padding: 8px;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.scheduler tr:nth-child(even) {
+    background: #F9FAFB;
+}
+
+.scheduler-active {
+    background-color: #6EE7B7 !important;
 }
