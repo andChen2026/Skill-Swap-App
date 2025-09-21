@@ -21,6 +21,32 @@ function setup(){
             console.error('Error:', error);
         });
     })*/
+
+    //jquery dropdown test
+    $('select').autocompleteDropdown({
+
+        // placeholder for the search field
+        customPlaceholderText: "Search...",
+
+        // default CSS classes
+        wrapperClass: 'autocomplete-dropdown',
+        inputClass: 'acdd-input',
+
+        // allows additions to the select field
+        allowAdditions: true,
+
+        // text to show when no results
+        noResultsText: 'No results found',
+
+        // callbacks
+        onChange: function() {
+            window.console.log('select has changed');
+        },
+        onSelect: function() {
+            window.console.log('an option has been selected');
+        },
+  
+    })
    document.getElementById("suggestions").addEventListener('change', function(event){
         console.log(document.getElementById("suggestions").value)
    })

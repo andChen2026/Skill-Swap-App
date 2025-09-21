@@ -1,4 +1,4 @@
-from flask import Flask, url_for, redirect, render_template, request, session, abort, jsonify
+from flask import Flask, url_for, get_flashed_messages, flash, redirect, render_template, request, session, abort, jsonify
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from user_model import Base, User
@@ -79,7 +79,8 @@ def create_new_account():
         testUser = web_session.query(User).filter_by(
             Username=request.form["user"]).first()
         if testUser is not None:
-            return render_template("login.html", error_message="Username is taken")
+            flash('Username is taken')
+            return render_template('new_account.html')
         session['Username']=request.form["user"]
         new_User = User(
             Name=request.form["the_Name"], Username=request.form["user"], Password=request.form["pass"])
