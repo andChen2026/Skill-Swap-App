@@ -19,5 +19,9 @@ RUN pip install torch matplotlib flask pandas
 # Verify dependencies have all been correctly installed, printed out during container initialization
 RUN pip list
 
+# Create dirs and set the working directory
+WORKDIR /app
+RUN mkdir -p /app/src
+
 # Create a long running process so container does not exit
 CMD ["tail", "-f", "/dev/null"]

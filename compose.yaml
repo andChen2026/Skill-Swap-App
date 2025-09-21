@@ -1,0 +1,8 @@
+services:
+  app:
+    image: itsandrewc/app:latest
+    ports: 
+      - "${FREE_PORT}:5000"
+    volumes:
+      - ./backend:/app/src
+    
