@@ -2,80 +2,171 @@
   width: 100%;
   table-layout: fixed;
   border-collapse: collapse;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
   user-select: none;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 15px;
+  font-family: 'Poppins', sans-serif;
 }
 
-.scheduler,
-.scheduler tr,
 .scheduler th,
 .scheduler td {
-  border: 1px solid black;
-  height: 25px;
-  line-height: 25px;
+    border: 1px solid #e5e7eb;
+    height: 40px;          /* increase cell height */
+    line-height: 40px;
+    font-size: 0.9rem;
+    text-align: center;
+    transition: background 0.2s ease;
 }
 
-.scheduler td,
+.scheduler td.scheduler-hour {
+    cursor: pointer;
+}
+
 .scheduler th {
-  position: relative;
-  font-size: 12px;
-  text-align: center;
+  background: #F3F4F6;
+  font-weight: 600;
 }
 
-.scheduler .scheduler-hour-toggle,
-.scheduler .scheduler-hour {
-  width: 15px;
-}
-
-.scheduler-time-title,
-.scheduler-week-title {
-  padding: 0 5px;
-}
-
-.scheduler-time-title {
-  text-align: right;
-}
-
-.scheduler-week-title {
-  text-align: left;
-}
-
-.scheduler .slash {
-  width: 80px;
-  height: 55px;
-}
-
-.scheduler-active {
-  background: #dff0d8;
-}
-
-.scheduler-day-toggle,
-.scheduler-half-toggle,
-.scheduler-hour-toggle {
+.scheduler td:hover {
+  background: #DBEAFE;
   cursor: pointer;
 }
 
-.scheduler>tfoot>tr>td {
-  text-align: left;
-  padding: 0 5px;
-}
-
-.scheduler-reset {
-  float: right;
-}
-
 .scheduler-active {
-  background-color: #87bd41
-}
-
-.scheduler-disabled .scheduler-day-toggle,
-.scheduler-disabled .scheduler-half-toggle,
-.scheduler-disabled .scheduler-hour-toggle {
-  cursor: default;
+  background-color: #6EE7B7 !important;
 }
 
 .scheduler-disabled .scheduler-active {
-  background-color: #acdd6d
+  background-color: #93E2C9 !important;
 }
+
+.scheduler .slash {
+    width: 120px;          /* wider column for TIME / DAY / weekdays */
+    height: 55px;          /* keep the same height as before */
+    padding: 5px;
+    text-align: left;      /* align the text nicely */
+    white-space: nowrap;   /* prevent text wrapping */
+    font-weight: 600;
+}
+
+.scheduler-time-title {
+    text-align: center;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+.scheduler-week-title {
+    text-align: center;
+    font-size: 14px;
+    padding-left: 5px;
+}
+
+
+
+.scheduler-footer-cell {
+    display: flex;
+    justify-content: space-between; /* tip left, button right */
+    align-items: center;
+    width: 100%;
+    padding: 8px 12px;
+    box-sizing: border-box;
+}
+
+.scheduler-footer-cell .scheduler-tips {
+    flex: 1;             /* stretches to take full remaining width */
+    text-align: left;    
+    font-size: 0.9rem;
+    color: #6B7280;
+}
+
+.scheduler-footer-cell .scheduler-reset {
+    flex: 0 0 auto;      /* button takes only as much space as needed */
+    padding: 6px 16px;
+    background-color: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.scheduler-footer-cell .scheduler-reset:hover {
+    background-color: #2563EB;
+}
+
+
+
+
+/* .scheduler-footer-cell {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    width: 100%;
+}
+
+.scheduler-footer-cell .scheduler-tips {
+    flex: 1;                  
+    text-align: left;         
+    font-size: 0.9rem;
+    color: #6B7280;
+}
+
+.scheduler-footer-cell .scheduler-reset {
+    margin-left: auto;        
+    padding: 6px 16px;
+    background-color: #3B82F6;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+}
+
+.scheduler-footer-cell .scheduler-reset:hover {
+    background-color: #2563EB;
+} */
+
+
+
+/*
+.scheduler tfoot td {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  
+    padding: 5px 10px;
+}
+.scheduler tfoot .scheduler-tips {
+    width: 100%;
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.scheduler tfoot .scheduler-reset {
+    display: inline-block;       
+    padding: 6px 14px;
+    background-color: #3B82F6;
+    color: white;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    margin: 0 auto;
+}
+
+
+.scheduler tfoot .scheduler-reset:hover {
+    background-color: #2563EB;
+}
+
+.scheduler tfoot .scheduler-tips {
+    display: block;
+    width: 100%;            
+    font-size: 0.9rem;
+    color: #6B7280;      
+    margin-bottom: 8px;     
+} 
+*/
