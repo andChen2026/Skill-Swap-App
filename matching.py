@@ -60,7 +60,9 @@ def _ordered_skill_score(target_learn: List[str], teacher_teach: List[str]) -> f
 
 def availability_match_ordered(
     availabilities: Dict[str, str],
-    skills: Dict[str, Dict[str, List[str]]],
+    # skills: Dict[str, Dict[str, List[str]]],
+    teach_skills: Dict[str, List[str]],
+    learn_skills: Dict[str, List[str]],
     target: str,
 ) -> List[Tuple[str, float]]:
     """
@@ -80,11 +82,13 @@ def availability_match_ordered(
     """
     if target not in availabilities:
         raise ValueError(f"Target '{target}' not found in availabilities.")
-    if target not in skills:
-        raise ValueError(f"Target '{target}' not found in skills data.")
+    if target not in teach_skills:
+        raise ValueError(f"Target '{target}' not found in teach_skills data.")
+    if target not in learn_skills:
+        raise ValueError(f"Target '{target}' not found in learn_skills data.")
 
-    target_learn = skills[target].get("learn", [])
-    target_teach = set(skills[target].get("teach", []))
+    target_learn = learn_skills[target]
+    target_teach = teach_skills[target]
     if not target_learn or not target_teach:
         return []
 
@@ -94,16 +98,18 @@ def availability_match_ordered(
     for user, vec in availabilities.items():
         if user == target:
             continue
-        if user not in skills:
+        if user not in teach_skills:
+            continue
+        if user not in learn_skills:
             continue
 
-        candidate_teach = skills[user].get("teach", [])
-        candidate_learn = set(skills[user].get("learn", []))
+        candidate_teach = teach_skills[user]
+        candidate_learn = learn_skills[user]
 
         # Strict reciprocity check
         if not (set(candidate_teach) & set(target_learn)):
             continue
-        if not (candidate_learn & target_teach):
+        if not (set(candidate_learn) & set(target_teach)):
             continue
 
         skill_align = _ordered_skill_score(target_learn, candidate_teach)
@@ -128,15 +134,31 @@ if __name__ == "__main__":
     }
 
     # Note: lists are ORDERED; index 0 = highest priority
-    skills = {
+    '''skills = {
         "alice": {"teach": ["python"], "learn": ["math", "design", "music"]},
         "bob": {"teach": ["math", "music"], "learn": ["python"]},
         "carol": {"teach": ["history"], "learn": ["math"]},
         "dave": {"teach": ["design", "math"], "learn": ["python", "math"]},
+    }'''
+
+    # Note: lists are ORDERED; index 0 = highest priority
+    teach_skills = {
+        "alice": ["python"],
+        "bob": ["math", "music"],
+        "carol": ["history"],
+        "dave": ["design", "math"],
+    }
+
+    # Note: lists are ORDERED; index 0 = highest priority
+    learn_skills = {
+        "alice": ["math", "design", "music"],
+        "bob": ["python"],
+        "carol": ["math"],
+        "dave": ["python", "math"],
     }
 
     target = "alice"
 
     print("\nOrdered reciprocal skill match:")
-    for user, score in availability_match_ordered(availabilities, skills, target):
+    for user, score in availability_match_ordered(availabilities, teach_skills, learn_skills, target):
         print(f"{user}: {score:.4f}")
