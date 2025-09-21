@@ -13,6 +13,3 @@ done
 
 # Run docker compose with the .env file
 docker compose up
-
-# Optional: Run directly with docker (commented out)
-# docker run --rm -p $FREE_PORT:5000 $IMAGE_NAME:latest
