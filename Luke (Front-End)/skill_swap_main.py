@@ -102,6 +102,8 @@ def profile(username):
     if request.method=="GET":
         return render_template("profile.html",username=username)
     elif request.method=="POST": 
+        if request.form.get('action') == 'Get Matches':
+            return redirect(url_for("show_matches"))
         data = request.get_json()  # Get JSON data from the request
         received_value = data.get('value')
     
@@ -228,13 +230,13 @@ def process_value():
             #res = sorted(matches, key=lambda x: x[1],reverse=True)
             i=0
             matchInfo={}
-            #for match in res:
-                #currUserName=match[0]
-                #currUser=web_session.query(User).filter_by(Username=currUserName).first()
-                #currNameofUser=currUser.Name
-                #combo=currNameofUser, currUser.MySkills,currUser.NeededSkills,match[1]
-                #matchInfo[i]=combo
-                #i=i+1
+            for match in matches:
+                currUserName=match[0]
+                currUser=web_session.query(User).filter_by(Username=currUserName).first()
+                currNameofUser=currUser.Name
+                combo=currNameofUser, currUser.MySkills,currUser.NeededSkills,match[1]
+                matchInfo[i]=combo
+                i=i+1
             session['matches']=matchInfo
             return jsonify({'Status':"success"})
             #return redirect(url_for("show_matches"), code=307)
