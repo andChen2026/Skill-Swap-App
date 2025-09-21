@@ -1,0 +1,6 @@
+flask==2.3.3
+pandas==2.2.2
+torch==2.2.0
+matplotlib==3.8.0
+sqlalchemy==2.0.21
+kagglehub==0.1.5

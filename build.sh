@@ -15,4 +15,5 @@ docker buildx inspect --bootstrap
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
   -t $IMAGE_NAME:latest \
-  --push .  # or --load if you want it locally
+  --push \
+  .  
