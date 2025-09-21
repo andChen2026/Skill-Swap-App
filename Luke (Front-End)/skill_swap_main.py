@@ -57,12 +57,16 @@ def login_controller():
             else:
                 # wrong password
                 # print("Login route: POST Request: wrong password: aborting process...")
-                return redirect(url_for("login_controller"))
+                error_message="Wrong password"
+                #return redirect(url_for("login_controller"))
+                return render_template("login.html",error_message=error_message)
                 # abort(401)
         else:
             # wrong username
             # print("Login route: POST request: user is not registered in the database: Aborting process...")
-            return redirect(url_for("login_controller"))
+            error_message="Wrong username"
+           # return redirect(url_for("login_controller"))
+            return render_template("login.html", error_message=error_message)
 
 
 @app.route("/newaccount/", methods=["GET", "POST"])
@@ -72,6 +76,10 @@ def create_new_account():
         return render_template('new_account.html')
     elif request.method == 'POST':
         # return request.form.get("the_Name")
+        testUser = web_session.query(User).filter_by(
+            Username=request.form["user"]).first()
+        if testUser is not None:
+            return render_template("login.html", error_message="Username is taken")
         session['Username']=request.form["user"]
         new_User = User(
             Name=request.form["the_Name"], Username=request.form["user"], Password=request.form["pass"])
