@@ -1,5 +1,5 @@
 # Shell script to build the image from the docker file
-# Development only
+# Development only, run docker pull to local; then, run ./run.sh
 
 # Set the Image name
 IMAGE_NAME="itsandrewc/app"
