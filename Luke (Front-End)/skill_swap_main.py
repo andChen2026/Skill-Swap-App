@@ -6,6 +6,7 @@ from bs4 import BeautifulSoup
 import os
 import pandas as pd
 from matching import availability_match_ordered
+from typing import Dict, List, Tuple
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -208,13 +209,19 @@ def process_value():
             currUser.MySkills=mySkills
             currUser.NeededSkills=myNeededSkills
             web_session.commit()
-            availabilityDict={}
-            skillsDict={}
-            allUsers=session.query(User).all()
+            availabilityDict: Dict[str,str]={}
+            skillsDict: Dict[str, Dict[str, List[str]]]={}
+            teachDict: Dict[str, List[str]]={}
+            learnDict: Dict[str, List[str]]={}
+            allUsers=web_session.query(User).all()
             for user in allUsers:
                 availabilityDict[user.Username]=user.Schedule
-                teachDict={"teach",str(user.MySkills).split(",")}
-                learnDict={"learn",str(user.MyNeededSkills).split(",")}
+                mySkillsArr=user.MySkills.split(",")
+                mySkillsList=list(mySkillsArr)
+                teachDict={"teach",mySkillsList}
+                neededSkillsArr=user.NeededSkills.split(",")
+                neededSkillsList=list(neededSkillsArr)
+                learnDict={"learn", neededSkillsList}
                 skillsDict[user.Username]={teachDict,learnDict}
             matches=availability_match_ordered(availabilityDict,skillsDict,user.Username)
             res = sorted(matches, key=lambda x: x[1],reverse=True)
@@ -224,8 +231,8 @@ def process_value():
                 currUserName=match[0]
                 currUser=web_session.query(User).filter_by(Username=currUserName).first()
                 currNameofUser=currUser.Name
-                tuple=currNameofUser, currUser.MySkills,currUser.NeededSkills,match[1]
-                matchInfo[i]=tuple
+                combo=currNameofUser, currUser.MySkills,currUser.NeededSkills,match[1]
+                matchInfo[i]=combo
                 i=i+1
             session['matches']=matchInfo
             return redirect(url_for("show_matches"), code=307)
