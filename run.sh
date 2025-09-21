@@ -1,4 +1,5 @@
 #!/bin/bash
+# Script to start up the Flask server inside of a container
 
 # Set the Image name
 IMAGE_NAME="itsandrewc/app"

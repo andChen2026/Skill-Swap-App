@@ -4,3 +4,4 @@ torch==2.2.0
 matplotlib==3.8.0
 sqlalchemy==2.0.21
 kagglehub==0.1.5
+typing_extensions==4.15.0
