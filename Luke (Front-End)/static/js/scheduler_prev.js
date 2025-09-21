@@ -173,7 +173,6 @@
     footer: true,
     multiple: true,
     disabled: false,
-    RESET: 'Reset Selected',  
     // event callbacks
     onDragStart: $.noop,
     onDragMove: $.noop,

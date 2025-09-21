@@ -1,31 +1,27 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
-    <title>Document</title>
+    <title>Create Account</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/new_account.css')}}">
-    <link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 </head>
-    <body>
+<body>
+    <div class="container">
         <h1>Create a New Account</h1>
-        <body>
-            <div style="background-color: #d2d6db">
-                <form action="" method="post">
-                    <label for="user">First and Last Name:</label>
-                    <input type="text" name="the_Name" />
-                    <br />
-                    <label for="user">Username:</label>
-                    <input type="text" name="user" />
-                    <br />
-                    <label for="user">Password:</label>
-                    <input type="text" name="pass" />
-                    <br />
-                    <div>
-                        <input type="submit" value="Create Account" />
-                    </div>
-                </form>
-            </div>
-            
-        </body>
-    </body>
+        <div class="form-card">
+            <form action="" method="post">
+                <label for="the_Name">First and Last Name</label>
+                <input type="text" name="the_Name" placeholder="John Doe" />
+
+                <label for="user">Username</label>
+                <input type="text" name="user" placeholder="Choose a username" />
+
+                <label for="pass">Password</label>
+                <input type="password" name="pass" placeholder="Choose a password" />
+
+                <input type="submit" value="Create Account" class="btn-primary" />
+            </form>
+        </div>
+    </div>
+</body>
 </html>

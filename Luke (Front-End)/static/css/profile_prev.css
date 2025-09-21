@@ -1,0 +1,58 @@
+.search-results-dropdown {
+  max-height: 200px; /* Set a maximum height for the dropdown */
+  overflow-y: auto; /* Add a vertical scrollbar if content exceeds max-height */
+  border: 1px solid #ccc;
+  background-color: white;
+  /* Other styling for the dropdown */
+}
+
+body{
+    font-family: 'Open Sans', sans-serif;
+    background-color: #7DF9FF
+}
+
+h1{
+    text-align: center;
+    font-size: 50px;
+}
+
+/*Copied from login.css*/
+div{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align:center;
+    
+}
+
+form{
+    margin: auto;
+    width: 50%
+}
+
+input[type="text"]{
+    font-family: 'Open Sans', sans-serif;
+    /*display:block;*/
+    margin: 10px;
+    width: 200px;
+}
+
+input[type="submit"]{
+    font-family: 'Open Sans', sans-serif;
+    /*display:block;*/
+    font-size: 20px;
+    margin: 100px;
+    width: 200px;
+}
+
+label{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 30px;
+    text-align:center;
+    display:block;
+}
+button{
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    width: auto;
+}
