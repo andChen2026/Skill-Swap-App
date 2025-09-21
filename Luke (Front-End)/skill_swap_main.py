@@ -215,16 +215,16 @@ def process_value():
             teachDict: Dict[str, List[str]]={}
             learnDict: Dict[str, List[str]]={}
             allUsers=web_session.query(User).all()
-            #for user in allUsers:
-                #availabilityDict[user.Username]=user.Schedule
-                #mySkillsArr=user.MySkills.split(",")
-                #mySkillsList=list(mySkillsArr)
-                #teachDict={"teach",mySkillsList}
-                #neededSkillsArr=user.NeededSkills.split(",")
-                #neededSkillsList=list(neededSkillsArr)
-                #learnDict={"learn", neededSkillsList}
+            for user in allUsers:
+                availabilityDict[user.Username]=user.Schedule
+                mySkillsArr=user.MySkills.split(",")
+                mySkillsList=list(mySkillsArr)
+                teachDict[user.Username]=mySkillsList
+                neededSkillsArr=user.NeededSkills.split(",")
+                neededSkillsList=list(neededSkillsArr)
+                learnDict[user.Username]=neededSkillsList
                 #skillsDict[user.Username]={teachDict,learnDict}
-            #matches=availability_match_ordered(availabilityDict,skillsDict,user.Username)
+            matches=availability_match_ordered(availabilityDict,teachDict,learnDict,user.Username)
             #res = sorted(matches, key=lambda x: x[1],reverse=True)
             i=0
             matchInfo={}
