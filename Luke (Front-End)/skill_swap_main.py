@@ -4,7 +4,8 @@ from sqlalchemy.orm import sessionmaker
 from user_model import Base, User
 from bs4 import BeautifulSoup
 import os
-
+import pandas as pd
+from matching import availability_match_ordered
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -179,11 +180,14 @@ def get_serial():
     return jsonify(currSerial)
 @app.route('/process_value', methods=['GET','POST'])
 def process_value():
-        
+        skills= pd.read_csv('static/csv/hobbies.csv')
+        top10skills=skills["HOBBIES"].head(10)
+        top10skillscommaseparated=",".join(top10skills.astype(str))
         currUser=web_session.query(User).filter_by(Username=session["Username"]).first()
+
         if request.method=='GET':
-            saved_schedule={'Schedule': currUser.Schedule, 'MySkills': currUser.MySkills, 'MyNeededSkills': currUser.NeededSkills}
-            return jsonify(saved_schedule)
+            profile_data={'Possible_Skills': top10skillscommaseparated,'Schedule': currUser.Schedule, 'MySkills': currUser.MySkills, 'MyNeededSkills': currUser.NeededSkills}
+            return jsonify(profile_data)
         else:
             data = request.get_json()  # Get JSON data from the request
             schedule = data.get('schedule')
@@ -204,8 +208,30 @@ def process_value():
             currUser.MySkills=mySkills
             currUser.NeededSkills=myNeededSkills
             web_session.commit()
-        return jsonify(message=processed_message)    
-
+            availabilityDict={}
+            skillsDict={}
+            allUsers=session.query(User).all()
+            for user in allUsers:
+                availabilityDict[user.Username]=user.Schedule
+                teachDict={"teach",str(user.MySkills).split(",")}
+                learnDict={"learn",str(user.MyNeededSkills).split(",")}
+                skillsDict[user.Username]={teachDict,learnDict}
+            matches=availability_match_ordered(availabilityDict,skillsDict,user.Username)
+            res = sorted(matches, key=lambda x: x[1],reverse=True)
+            i=0
+            matchInfo={}
+            for match in res:
+                currUserName=match[0]
+                currUser=web_session.query(User).filter_by(Username=currUserName).first()
+                currNameofUser=currUser.Name
+                tuple=currNameofUser, currUser.MySkills,currUser.NeededSkills,match[1]
+                matchInfo[i]=tuple
+                i=i+1
+            session['matches']=matchInfo
+            return redirect(url_for("show_matches"), code=307)
+@app.route('/show_matches')
+def show_matches():
+    return render_template("matches.html",matches=session['matches'])
 if __name__ == "__main__":
     #app.run(debug=True)
     app.run(port=5000,debug=False)

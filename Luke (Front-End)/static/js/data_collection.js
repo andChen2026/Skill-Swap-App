@@ -23,14 +23,18 @@ function setup(){
     })*/
     //$(document).ready (dropdown());
     
-    
-    elements=document.getElementsByClassName('skills_dropdown')
-    for(element in elements){
-        newOption=document.createElement('option')
-        newOption.value=1
-        console.log("newoption="+newOption)
-        element.appendChild(newOption)
+    /*How to add options to datalist!!!!!
+    console.log("fuck my life")
+    elements=document.getElementById('skills')
+    newOption=document.createElement('option')
+    var str=''; // variable to store the options
+    var month = new Array("January","February","March","April","May","June","July","August",
+    "September","October","November","December");
+    for (var i=0; i < month.length;++i){
+        str += '<option value="'+month[i]+'" />'; // Storing options in variable
     }
+    elements.innerHTML = str;
+    console.log(elements)*/
     
     
     
@@ -90,7 +94,7 @@ function setup(){
     document.getElementById('add_skill_button').addEventListener('click', function(){
         const listDiv=document.getElementById('mySkillList');
         newListItem=document.createElement('ul');
-        skillText=document.getElementById('skills_bar').value;
+        skillText=document.getElementById('skills_bar').value
         document.getElementById('skills_bar').value=""
         newListItem.innerHTML=skillText;
         newListItem.id=listDiv.childElementCount+1
@@ -219,6 +223,8 @@ function setup(){
             mySkillsStringToPageSkills(data.MySkills)
             myNeededSkillsStringtoPageNeededSkills(data.MyNeededSkills)
             console.log("myneededskills="+data.MyNeededSkills)
+            addPossibleSkillsToDropDowns(data.Possible_Skills)
+            console.log("possible skills"+data.Possible_Skills)
         })
             .catch(error => {
               console.error('Error fetching data:', error);
@@ -284,6 +290,26 @@ function setup(){
       // Perform actions on each element, e.g., log its content
 }
     //elements=document.getElementsByClassName(
+function addPossibleSkillsToDropDowns(possibleSkills){
+    elements=document.getElementById('skills')
+    newOption=document.createElement('option')
+    var str=''; // variable to store the options
+    var arr=possibleSkills.split(',')
+    for (var i=0; i < arr.length;++i){
+        str += '<option value="'+arr[i]+'" />'; // Storing options in variable
+    }
+    elements.innerHTML = str;
+    console.log(elements)
+    elements=document.getElementById('needed_skills')
+    newOption=document.createElement('option')
+    str=''; // variable to store the options
+    for (var i=0; i < arr.length;++i){
+        str += '<option value="'+arr[i]+'" />'; // Storing options in variable
+    }
+    elements.innerHTML = str;
+    console.log(elements)
+    
+}
 function serialToCalendar(serial){
     serialString=serial.toString()
     //$('#example').scheduler('val', {1: [1,2,3,5], 2:[2]});

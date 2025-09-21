@@ -15,4 +15,5 @@ class User(Base):
     NeededSkills=Column("NeededSkills", String,nullable=False, default="None")
     Schedule=Column("Schedule",String,nullable=False, default="000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000")
     data_created=Column("date_created", Date, nullable=False, default=dt.datetime.utcnow)
+    current_Matches=Column("CurrentMatches",String, nullable=False, default="None")
     
