@@ -58,6 +58,7 @@ def _ordered_skill_score(target_learn: List[str], teacher_teach: List[str]) -> f
 
     return best
 
+##CALL THIS FUNCTION IN FLASK!!!!!
 def availability_match_ordered(
     availabilities: Dict[str, str],
     skills: Dict[str, Dict[str, List[str]]],

@@ -209,33 +209,35 @@ def process_value():
             currUser.MySkills=mySkills
             currUser.NeededSkills=myNeededSkills
             web_session.commit()
+
             availabilityDict: Dict[str,str]={}
             skillsDict: Dict[str, Dict[str, List[str]]]={}
             teachDict: Dict[str, List[str]]={}
             learnDict: Dict[str, List[str]]={}
             allUsers=web_session.query(User).all()
-            for user in allUsers:
-                availabilityDict[user.Username]=user.Schedule
-                mySkillsArr=user.MySkills.split(",")
-                mySkillsList=list(mySkillsArr)
-                teachDict={"teach",mySkillsList}
-                neededSkillsArr=user.NeededSkills.split(",")
-                neededSkillsList=list(neededSkillsArr)
-                learnDict={"learn", neededSkillsList}
-                skillsDict[user.Username]={teachDict,learnDict}
-            matches=availability_match_ordered(availabilityDict,skillsDict,user.Username)
-            res = sorted(matches, key=lambda x: x[1],reverse=True)
+            #for user in allUsers:
+                #availabilityDict[user.Username]=user.Schedule
+                #mySkillsArr=user.MySkills.split(",")
+                #mySkillsList=list(mySkillsArr)
+                #teachDict={"teach",mySkillsList}
+                #neededSkillsArr=user.NeededSkills.split(",")
+                #neededSkillsList=list(neededSkillsArr)
+                #learnDict={"learn", neededSkillsList}
+                #skillsDict[user.Username]={teachDict,learnDict}
+            #matches=availability_match_ordered(availabilityDict,skillsDict,user.Username)
+            #res = sorted(matches, key=lambda x: x[1],reverse=True)
             i=0
             matchInfo={}
-            for match in res:
-                currUserName=match[0]
-                currUser=web_session.query(User).filter_by(Username=currUserName).first()
-                currNameofUser=currUser.Name
-                combo=currNameofUser, currUser.MySkills,currUser.NeededSkills,match[1]
-                matchInfo[i]=combo
-                i=i+1
+            #for match in res:
+                #currUserName=match[0]
+                #currUser=web_session.query(User).filter_by(Username=currUserName).first()
+                #currNameofUser=currUser.Name
+                #combo=currNameofUser, currUser.MySkills,currUser.NeededSkills,match[1]
+                #matchInfo[i]=combo
+                #i=i+1
             session['matches']=matchInfo
-            return redirect(url_for("show_matches"), code=307)
+            return jsonify({'Status':"success"})
+            #return redirect(url_for("show_matches"), code=307)
 @app.route('/show_matches')
 def show_matches():
     return render_template("matches.html",matches=session['matches'])

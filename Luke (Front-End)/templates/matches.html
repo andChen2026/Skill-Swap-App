@@ -10,7 +10,23 @@
     <div id="matches">
         <ul>
             {{for key, value in matches.items()}}
-                <li>key[0]</li>
+                <div>
+                    <li>
+                        Name:{{user.ActualName}}
+                    </li>
+                    <li>
+                        Username:{{user.UserName}}
+                    </li>
+                    <li>
+                        Teaching Skills:{{user.mySkills}}
+                    </li>
+                    <li>
+                        Learning Skills:{{user.neededSkills}}
+                    </li>
+                    <li>
+                        Match Score:{{user.matchScore}}
+                    </li>
+                </div>
             {% endfor %}
         </ul>
     </div>
