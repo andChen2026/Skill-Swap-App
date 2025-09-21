@@ -4,7 +4,7 @@ var str="None"
 window.addEventListener('load',setup)
 mySkills=[]
 function setup(){
-    
+    console.log("setup")
     /*document.getElementById('get_match_results').addEventListener('click', function(){
         fetch('/process_value', {
             method: 'POST',
@@ -23,10 +23,15 @@ function setup(){
     })*/
     //$(document).ready (dropdown());
     
-    document.addEventListener('DOMContentLoaded',function(){
-        elements=document.getElementsByClassName('needed_skills_dropdown')
-        console.log("elements"+elements)
-    })
+    
+    elements=document.getElementsByClassName('skills_dropdown')
+    for(element in elements){
+        newOption=document.createElement('option')
+        newOption.value=1
+        console.log("newoption="+newOption)
+        element.appendChild(newOption)
+    }
+    
     
     
     
